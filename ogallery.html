@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Kartanaka Sanghas Junior College of Commerce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        /* Opening Animation Section */
+        .opening-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            animation: fadeOut 5s forwards 5s; /* Fades out after 5s */
+        }
+
+        .logo {
+            margin-bottom: 20px;
+            animation: scaleUp 2s ease-in-out;
+        }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .namaste {
+            font-size: 50px;
+            color: #ff5252;
+            animation: textColorChange 2s infinite alternate;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes textColorChange {
+            0% {
+                color: #ff5252;
+            }
+            100% {
+                color: #b71c1c;
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Header Section */
+        header {
+            background-color: #b71c1c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #b71c1c;
+            background-color: #1f1f1f;
+            color: white;
+        }
+
+        /* Logo Below Search Bar */
+        .college-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .college-logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        /* Gallery Section */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            max-height: 400px;
+            width: 90%;
+            padding: 20px;
+            border: 2px solid #b71c1c;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .folder {
+            margin: 20px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .folder img {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .folder:hover img {
+            transform: scale(1.2);
+        }
+
+        .folder p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ff5252;
+        }
+
+        .folder-details {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            width: 150px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .folder:hover .folder-details {
+            display: block;
+            animation: fadeInDetails 0.5s ease-in-out;
+        }
+
+        @keyframes fadeInDetails {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #b71c1c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: sticky;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Opening Animation -->
+    <div class="opening-container">
+        <div class="logo">
+            <img src="media-crew-logo.png" alt="Media Crew Logo">
+        </div>
+        <div class="namaste">
+            Namaste!
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>Kartanaka Sanghas Junior College of Commerce</h1>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" onkeyup="filterFolders()" placeholder="Search by event name, date, or time...">
+    </div>
+
+    <!-- College Logo Below Search Bar -->
+    <div class="college-logo">
+        <img src="college-logo.png" alt="College Logo">
+    </div>
+
+    <!-- Gallery -->
+    <main>
+        <div class="gallery" id="gallery">
+            <div class="folder" data-name="Event 1" onclick="redirectToPage('page1.html')">
+                <div class="folder-details">
+                    <p>Date: 28/08/2025</p>
+                    <p>Time: 10:00 AM</p>
+                    <p>Name: Seminar</p>
+                </div>
+                <img src="folder-icon.png" alt="Folder">
+                <p>Event 1</p>
+            </div>
+            <div class="folder" data-name="Event 2" onclick="redirectToPage('https://photos.google.com/share/AF1QipMba2gfRIr5OrqAXiFOMiOA0yVMbX3tVuYNDxbJWRpHzNMOb4ZXEuSN_vK92BDsQQ?key=emxlWDVhSWZHQl9UanZHTlNxX3hMRS0zekVvTFRB')">
+                <div class="folder-details">
+                    <p>Date: 29/08/2025</p>
+                    <p>Time: 11:00 AM</p>
+                    <p>Name: Workshop</p>
+                </div>
+                <img src="folder-icon.png" alt="Folder">
+                <p>disaster management</p>
+            </div>
+            <div class="folder" data-name="Event 3" onclick="redirectToPage('page3.html')">
+                <div class="folder-details">
+                    <p>Date: 30/08/2025</p>
+                    <p>Time: 12:00 PM</p>
+                    <p>Name: Conference</p>
+                </div>
+                <img src="folder-icon.png" alt="Folder">
+                <p>Event 3</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© Made by Ujwal Guru</p>
+    </footer>
+
+    <script>
+        function redirectToPage(page) {
+            window.location.href = page;
+        }
+
+        function filterFolders() {
+            var input, filter, gallery, folders, folderDetails, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            gallery = document.getElementById('gallery');
+            folders = gallery.getElementsByClassName('folder');
+
+            for (i = 0; i < folders.length; i++) {
+                folderDetails = folders[i].getElementsByClassName("folder-details")[0];
+                txtValue = folders[i].getElementsByTagName("p")[0].textContent || folders[i].getElementsByTagName("p")[0].innerText;
+                txtValue += folderDetails.textContent || folderDetails.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    folders[i].style.display = "";
+                } else {
+                    folders[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

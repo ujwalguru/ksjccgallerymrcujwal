@@ -3,328 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Karnataka Sangha's Junior College of Commerce</title>
+    <title>Karnataka Sanghas Junior College of Commerce - TALAASH</title>
     <style>
-        * {
+        /* General Styling */
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('bg.jpeg'); /* Ensure correct path */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Keep the background fixed while scrolling */
+    background-repeat: no-repeat; /* Prevent repeating of background image */
+    color: white;
+}
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            color: #ff69b4;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
-        body {
-            background-color: #121212;
+        .navbar ul li {
+            margin-left: 2rem;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
             color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 100vh;
+            font-size: 1.2rem;
+            transition: color 0.3s;
         }
 
-        /* Opening Animation Section */
-        .opening-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-            animation: fadeOut 5s forwards 5s; /* Fades out after 5s */
+        .navbar ul li a:hover {
+            color: #ff69b4;
         }
 
-        .logo {
-            margin-bottom: 20px;
-            animation: scaleUp 2s ease-in-out;
-        }
-
-        .logo img {
-            width: 150px;
-            height: auto;
-        }
-
-        .namaste {
-            font-size: 50px;
-            color: #ff5252;
-            animation: textColorChange 2s infinite alternate;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes scaleUp {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes textColorChange {
-            0% {
-                color: #ff5252;
-            }
-            100% {
-                color: #b71c1c;
-            }
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        /* Header Section */
-        header {
-            background-color: #b71c1c;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* Search Bar */
-        .search-bar {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .search-bar input {
-            width: 80%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 2px solid #b71c1c;
-            background-color: #1f1f1f;
-            color: white;
-        }
-
-        /* Logo Below Search Bar */
-        .college-logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .college-logo img {
-            width: 150px;
-            height: auto;
-        }
-         .college-logo p {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #ff5252;
-            position: absolute;
-            bottom: 110%;
-            left: 50%;
-        }
-
-        /* Gallery Section */
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .gallery {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-            max-height: 400px;
-            width: 90%;
-            padding: 20px;
-            border: 2px solid #b71c1c;
-            background-color: #1f1f1f;
-            border-radius: 10px;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .folder {
-            margin: 20px;
-            text-align: center;
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-
-        .folder img {
-            width: 60px;
-            height: 60px;
-            transition: transform 0.3s ease;
-        }
-
-        .folder:hover img {
-            transform: scale(1.2);
-        }
-
-        .folder p {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #ff5252;
-        }
-
-        .folder-details {
+        /* Hamburger Menu */
+        .hamburger {
             display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        /* Mobile Menu */
+        .navbar ul.mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            padding: 0;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            z-index: 1;
+        }
+
+        .navbar ul.mobile-menu.show {
+            display: flex;
+        }
+
+        .navbar ul.mobile-menu li {
+            margin-left: 0;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Rounded, Transparent Section Box */
+        section {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            border-radius: 15px; /* Rounded corners */
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 2rem;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        table th, table td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #ddd;
+            color: white;
+        }
+
+        table th {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent rows */
+        }
+
+        table td img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #ff69b4;
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1rem;
+            margin: 1rem 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 10px;
-            position: absolute;
-            bottom: 110%;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 5px;
-            width: 150px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .folder:hover .folder-details {
-            display: block;
-            animation: fadeInDetails 0.5s ease-in-out;
+        footer a {
+            color: #ff69b4;
+            text-decoration: none;
         }
 
-        @keyframes fadeInDetails {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        footer a:hover {
+            text-decoration: underline;
         }
 
-        /* Footer */
-        footer {
-            background-color: #b71c1c;
-            color: white;
+        /* Sidebar Styling */
+        .sidebar {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 2rem;
             text-align: center;
-            padding: 10px;
-            position: sticky;
-            bottom: 0;
         }
 
+        .sidebar-icons {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            white-space: nowrap;
+            animation: slide-icons 10s linear infinite;
+        }
+
+        .sidebar-icons img {
+            width: 40px;
+            margin: 0 10px;
+        }
+
+        @keyframes slide-icons {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .navbar ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .navbar ul li {
+                padding: 0.5rem;
+            }
+        }
+    /* FAQ Section Styling */
+        .faq-section {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .faq-heading {
+            text-align: center;
+            font-size: 2rem;
+            color: #ff69b4;
+        }
+
+        .faq-container {
+            margin: 1rem 0;
+        }
+
+        .faq-container .faq {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .faq-container .faq:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-question {
+            font-size: 1.5rem;
+            color: #ff69b4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 1rem;
+            color: #fff;
+        }
+
+        /* Icon for the FAQ */
+        .faq-question i {
+            font-size: 1.2rem;
+            color: #ff69b4;
+            transition: transform 0.3s;
+        }
+
+        .faq.active .faq-question i {
+            transform: rotate(180deg); /* Rotate icon when active */
+        }
+
+        .faq.active .faq-answer {
+            display: block;
+        }
+
+        button {
+            background-color: #ff69b4;
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1rem;
+            margin: 1rem 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
     </style>
 </head>
 <body>
-    <!-- Opening Animation -->
-    <div class="opening-container">
-        <div class="logo">
-            <img src="media-crew-logo.png" alt="Media Crew Logo">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Karnataka Sanghas Junior College of Commerce</div>
+        <ul class="desktop-menu">
+            <li><a href="#day1">Day 1</a></li>
+            <li><a href="#day2">Day 2</a></li>
+            <li><a href="#guidelines">Guidelines</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <div class="namaste">
-            Namaste!
+        <ul class="mobile-menu">
+            <li><a href="#day1">Day 1</a></li>
+            <li><a href="#day2">Day 2</a></li>
+            <li><a href="#guidelines">Guidelines</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>TALAASH</h1>
+            <p>Welcome to the grand event of the year!</p>
+        </section>
+
+        <!-- Event Details - Day 1 -->
+        <section id="day1">
+            <h1>Day 1 Events</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Event</th>
+                        <th>Venue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9:00 AM</td>
+                        <td><img src="https://via.placeholder.com/20" alt="logo">Inauguration</td>
+                        <td>Main Hall</td>
+                    </tr>
+                    <tr>
+                        <td>10:30 AM</td>
+                        <td><img src="https://via.placeholder.com/20" alt="logo">Quiz Competition</td>
+                        <td>Room 101</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Event Details - Day 2 -->
+        <section id="day2">
+            <h1>Day 2 Events</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Event</th>
+                        <th>Venue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9:00 AM</td>
+                        <td>Sports Event</td>
+                        <td>Ground</td>
+                    </tr>
+                    <tr>
+                        <td>11:00 AM</td>
+                        <td>Drama Competition</td>
+                        <td>Auditorium</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="pdf-btn">Download PDF</button>
+        </section>
+
+        <!-- Guidelines Box -->
+        <section id="guidelines">
+            <h1>Guidelines</h1>
+            <p>Event participation guidelines go here.</p>
+            <button id="register-btn">Register</button>
+            <button id="pdf-btn">Download PDF</button>
+        </section>
+
+        <!-- Sidebar Section -->
+        <section class="sidebar">
+            <h2>Our Partners</h2>
+            <div class="sidebar-icons">
+                <img src="https://via.placeholder.com/40" alt="icon1">
+                <img src="https://via.placeholder.com/40" alt="icon2">
+                <img src="https://via.placeholder.com/40" alt="icon3">
+                <img src="https://via.placeholder.com/40" alt="icon4">
+                <img src="https://via.placeholder.com/40" alt="icon5">
+                <img src="https://via.placeholder.com/40" alt="icon6">
+                <img src="https://via.placeholder.com/40" alt="icon7">
+                <img src="https://via.placeholder.com/40" alt="icon8">
+                <img src="https://via.placeholder.com/40" alt="icon9">
+                <img src="https://via.placeholder.com/40" alt="icon10">
+            </div>
+        </section>
+        <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq">
+                <div class="faq-question">
+                    What is TALAASH? <i class="toggle-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    TALAASH is an annual event organized by the Karnataka Sanghas Junior College of Commerce, offering a range of competitions and activities.
+                </div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">
+                    How can I register for events? <i class="toggle-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    You can register for events by clicking the "Register" button on the event page or contacting the event coordinators.
+                </div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">
+                    What are the event dates? <i class="toggle-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    The events are scheduled on Day 1 (December 10) and Day 2 (December 11).
+                </div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">
+                    Where can I download event schedules? <i class="toggle-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    You can download the event schedules and guidelines from the "Download PDF" button provided after the event details section.
+                </div>
+            </div>
         </div>
+    </section>
+
+        <!-- Members Section -->
+        <section id="members">
+            <h1>Members Last Month</h1>
+            <p>Number of members: 123</p>
+        </section>
     </div>
 
-    <!-- Header -->
-    <header>
-        <h1>Karnataka Sangha's Junior College of Commerce</h1>
-    </header>
-
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <input type="text" id="searchInput" onkeyup="filterFolders()" placeholder="Search by event name, date, or time...">
+    <!-- Google Map Section -->
+<section id="location">
+    <h1>Our Location</h1>
+    <p>Karnataka Sanghas Junior College of Commerce is located in the heart of the city, making it easily accessible for all students and participants. Below is the map showing our exact location:</p>
+    
+    <!-- Embed Google Map -->
+    <div style="width: 100%; height: 400px;">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.1411778001747!2d73.07215101438727!3d19.2091147870134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be795c1aef9f1d7%3A0xf4018dc9e4388b8c!2sManjunatha%20College%20of%20Commerce!5e0!3m2!1sen!2sin!4v1696713559601!5m2!1sen!2sin"
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
     </div>
-
-    <!-- College Logo Below Search Bar -->
-    <div class="college-logo">
-        <img src="college-logo.png" alt="College Logo">
-        <p> Media representatives crew</p>
-    </div>
-
-    <!-- Gallery -->
-    <main>
-        <div class="gallery" id="gallery">
-            <div class="folder" data-name="Event 1" onclick="redirectToPage('page1.html')">
-                <div class="folder-details">
-                    <p>Date: 28/08/2025</p>
-                    <p>Time: 10:00 AM</p>
-                    <p>Name: Seminar</p>
-                </div>
-                <img src="folder-icon.png" alt="Folder">
-                <p>Event 1</p>
-            </div>
-            <div class="folder" data-name="Event 2" onclick="redirectToPage('https://photos.google.com/share/AF1QipMba2gfRIr5OrqAXiFOMiOA0yVMbX3tVuYNDxbJWRpHzNMOb4ZXEuSN_vK92BDsQQ?key=emxlWDVhSWZHQl9UanZHTlNxX3hMRS0zekVvTFRB')">
-                <div class="folder-details">
-                    <p>Date: 29/08/2025</p>
-                    <p>Time: 11:00 AM</p>
-                    <p>Name: Workshop</p>
-                </div>
-                <img src="folder-icon.png" alt="Folder">
-                <p>disaster management</p>
-            </div>
-            <div class="folder" data-name="Event 3" onclick="redirectToPage('https://photos.app.goo.gl/9muyPQ9HV67ZhtfD7')">
-                <div class="folder-details">
-                    <p>Date: 01/10/2024</p>
-                    <p>Time: 3:00 PM to 9:00pm</p>
-                    <p>Name: Sliver jublee </p>
-                </div>
-                <img src="folder-icon.png" alt="Folder">
-                <p>SLIVER JUBILEE </p>
-            </div>
-             <div class="folder" data-name="Event 4" onclick="redirectToPage('https://photos.app.goo.gl/sFLSGvrT9nM58NNk7')">
-                <div class="folder-details">
-                    <p>Date: 28/08/2025</p>
-                    <p>Time: 10:00 AM</p>
-                    <p>Name: youtude events</p>
-                </div>
-                <img src="folder-icon.png" alt="Folder">
-                <p>youtude video upcoming</p>
-            </div>
-          
-             
-        </div>
-    </main>
-
+</section>
     <!-- Footer -->
     <footer>
-        <p>© Made by Ujwal Guru</p>
+        <p>website made by </p>
+        <a href="https://yourlink.com" target="_blank">ujwal_guru</a>
     </footer>
 
     <script>
-        function redirectToPage(page) {
-            window.location.href = page;
+        // Toggle mobile menu visibility
+        function toggleMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.classList.toggle('show');
         }
 
-        function filterFolders() {
-            var input, filter, gallery, folders, folderDetails, i, txtValue;
-            input = document.getElementById('searchInput');
-            filter = input.value.toUpperCase();
-            gallery = document.getElementById('gallery');
-            folders = gallery.getElementsByClassName('folder');
+        // Register button functionality
+        document.getElementById("register-btn").addEventListener("click", function() {
+            window.location.href = "https://yourregistrationlink.com"; // Update this URL
+        });
 
-            for (i = 0; i < folders.length; i++) {
-                folderDetails = folders[i].getElementsByClassName("folder-details")[0];
-                txtValue = folders[i].getElementsByTagName("p")[0].textContent || folders[i].getElementsByTagName("p")[0].innerText;
-                txtValue += folderDetails.textContent || folderDetails.innerText;
-
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    folders[i].style.display = "";
-                } else {
-                    folders[i].style.display = "none";
-                }
-            }
-        }
+        // PDF button functionality
+        document.getElementById("pdf-btn").addEventListener("click", function() {
+            window.location.href = "https://yourpdflink.com"; // Update this URL
+        });
+    // JavaScript for FAQ toggle
+        document.querySelectorAll('.faq').forEach(faq => {
+            faq.addEventListener('click', () => {
+                faq.classList.toggle('active');
+            });
+        });
     </script>
 </body>
 </html>

@@ -157,6 +157,21 @@
             border-radius: 10px;
             animation: fadeIn 1s ease-in-out;
         }
+        .view-report-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    background-color: #ff5252;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-report-btn:hover {
+    background-color: #e53935;
+}
 
         .folder {
             margin: 20px;
@@ -312,6 +327,8 @@
                 </div>
                 <img src="folder-icon.png" alt="Folder">
                 <p>Rangila Raas Utsav</p>
+                 <button class="view-report-btn" onclick="redirectToPage('report1.pdf')">View Report (PDF)</button>
+</div>
             </div>
             <div class="folder" data-name="Event 2" onclick="redirectToPage('https://photos.google.com/share/AF1QipMba2gfRIr5OrqAXiFOMiOA0yVMbX3tVuYNDxbJWRpHzNMOb4ZXEuSN_vK92BDsQQ?key=emxlWDVhSWZHQl9UanZHTlNxX3hMRS0zekVvTFRB')">
                 <div class="folder-details">
@@ -321,6 +338,7 @@
                 </div>
                 <img src="folder-icon.png" alt="Folder">
                 <p>Disaster Management</p>
+                   <button class="view-report-btn" onclick="redirectToPage('report2.docx')">View Report (Word)</button>
             </div>
             <div class="folder" data-name="Event 3" onclick="redirectToPage('https://photos.app.goo.gl/97wo83Xp6dshFSbA7')">
                 <div class="folder-details">

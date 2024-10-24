@@ -156,7 +156,7 @@
             background-color: #1f1f1f;
             border-radius: 10px;
             animation: fadeIn 1s ease-in-out;
-       
+        }
 
         .folder {
             margin: 20px;
@@ -183,8 +183,6 @@
             color: #ff5252;
         }
 
-
-
         .folder-details {
             display: none;
             background-color: rgba(0, 0, 0, 0.7);
@@ -203,21 +201,7 @@
             display: block;
             animation: fadeInDetails 0.5s ease-in-out;
         }
-    .view-report-btn {
-    margin-top: 10px;
-    padding: 8px 15px;
-    font-size: 14px;
-    border: none;
-    background-color: #ff5252;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-.view-report-btn:hover {
-    background-color: #e53935;
-}
         @keyframes fadeInDetails {
             from {
                 opacity: 0;
@@ -227,7 +211,7 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        
+        }
 
         /* Popup Styles */
         .popup-container {
@@ -278,7 +262,7 @@
             width: 50px;
             height: 50px;
         }
- 
+
         /* Footer */
         footer {
             background-color: #b71c1c;
@@ -287,7 +271,7 @@
             padding: 10px;
             position: sticky;
             bottom: 0;
-        }   
+        }
     </style>
 </head>
 <body>
@@ -328,38 +312,25 @@
                 </div>
                 <img src="folder-icon.png" alt="Folder">
                 <p>Rangila Raas Utsav</p>
-                 <button class="view-report-btn" onclick="redirectToPage('report1.pdf')">View Report (PDF)</button>
-</div>
-            
+            </div>
             <div class="folder" data-name="Event 2" onclick="redirectToPage('https://photos.google.com/share/AF1QipMba2gfRIr5OrqAXiFOMiOA0yVMbX3tVuYNDxbJWRpHzNMOb4ZXEuSN_vK92BDsQQ?key=emxlWDVhSWZHQl9UanZHTlNxX3hMRS0zekVvTFRB')">
                 <div class="folder-details">
                     <p>Date: 29/08/2025</p>
                     <p>Time: 11:00 AM</p>
                     <p>Name: Disaster Management</p>
-            </div>
+                </div>
                 <img src="folder-icon.png" alt="Folder">
                 <p>Disaster Management</p>
-                   <button class="view-report-btn" onclick="redirectToPage('report2.docx')">View Report (Word)</button>
             </div>
-            <div class="folder" data-name="Event 3" onclick="redirectToPage('https://photos.app.goo.gl/97wo83Xp6dshFSbA7')">
+            <div class="folder" data-name="Event 3" onclick="redirectToPage('https://photos.app.goo.gl/9muyPQ9HV67ZhtfD7')">
                 <div class="folder-details">
-                    <p>Date: 29/08/2025</p>
-                    <p>Time: 11:00 AM</p>
-                    <p>Name: Women Empowerment</p>
+                    <p>Date: 01/10/2024</p>
+                    <p>Time: 3:00 PM to 9:00 PM</p>
+                    <p>Name: Silver Jubilee</p>
                 </div>
                 <img src="folder-icon.png" alt="Folder">
-                <p>Women Empowerment</p>
+                <p>Silver Jubilee</p>
             </div>
-               <div class="folder" data-name="Event 3" onclick="redirectToPage('https://photos.app.goo.gl/EDUBzLzzxEPj2NMY6')">
-                <div class="folder-details">
-                    <p>Date: 29/08/2025</p>
-                    <p>Time: 11:00 AM</p>
-                    <p>Name: women saftey</p>
-                </div>
-                <img src="folder-icon.png" alt="Folder">
-                <p>Women defence and saftey</p>
-            </div>
-        
             <div class="folder" data-name="Event 4" onclick="redirectToPage('https://photos.app.goo.gl/sFLSGvrT9nM58NNk7')">
                 <div class="folder-details">
                     <p>Date: 28/08/2025</p>
@@ -378,7 +349,7 @@
             <span class="close-btn" onclick="closePopup('event1-popup')">&times;</span>
             <h2>Rangila Raas Utsav Folders</h2>
             <div class="scrollable-content">
-                <div class="folder" onclick="redirectToPage('https://photos.app.goo.gl/8v98BaNyefpUYQJ26')">
+                <div class="folder" onclick="redirectToPage('folder1.html')">
                     <img src="folder-icon.png" alt="Folder">
                     <p>Best out of Waste</p>
                 </div>
